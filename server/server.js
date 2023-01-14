@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { connect } from "./utils/db";
 import userRouter from "./resources/user/user.router";
-import medItemRouter from "./resources/medItem/medItem.router";
+import applicantRouter from "./resources/applicant/applicant.router";
 import { signin, signup, protect } from "./utils/auth";
 
 const app = express();
@@ -20,7 +20,7 @@ app.post("/signin", signin);
 app.post("/signup", signup);
 
 app.use("/api", protect);
-// app.use("/api/user", userRouter);
-// app.use("/api/medItem", medItemRouter);
+app.use("/api/user", userRouter);
+app.use("/api/applicant", applicantRouter);
 
 app.listen(PORT, () => console.log("Server Started"));
