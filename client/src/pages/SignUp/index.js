@@ -6,7 +6,7 @@ function SignUp() {
     <div>
         <Layout>
             <div className="body">
-                <div className="title py-6 bg-indigo-600 text-white">
+                <div className="title py-6 bg-gray-600 text-white">
                     <div className="contain m-0 mx-auto w-10/12">
                     <h1 className='font-bold text-4xl'>Please provide the following details.</h1>
                     </div>

@@ -27,6 +27,8 @@ const applicantSchema = new mongoose.Schema(
     outstandingFees: String,
     feeStatementUrl: String,
     totalFees: String,
+    institutionHead: String,
+    applicationStatus: String,
   },
   { timestamps: true }
 );
