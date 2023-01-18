@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 import { connect } from "./utils/db";
 import userRouter from "./resources/user/user.router";
-import medItemRouter from "./resources/medItem/medItem.router";
+import applicantRouter from "./resources/applicant/applicant.router";
 import { signin, signup, protect } from "./utils/auth";
+import { upload } from "./resources/applicant/applicant.controller";
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -20,7 +22,7 @@ app.post("/signin", signin);
 app.post("/signup", signup);
 
 app.use("/api", protect);
-// app.use("/api/user", userRouter);
-// app.use("/api/medItem", medItemRouter);
+app.use("/api/user", userRouter);
+app.use("/api/applicant", applicantRouter);
 
 app.listen(PORT, () => console.log("Server Started"));

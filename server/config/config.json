@@ -1,0 +1,14 @@
+
+{
+    "development": {
+      "dbUrl": "mongodb+srv://AdminMomanyi:hLCgZeBDzpfg1UQi@cluster0.ex8tu.mongodb.net/cdfreg?retryWrites=true&w=majority"
+    },
+    "production": {
+      "use_env_variable": "DATABASE_URL",
+      "dialect": "postgres"
+    },
+    "secrets": {
+      "jwt": "thtittibnidnib337474",
+      "jwtExp": "100d"
+    }
+  }

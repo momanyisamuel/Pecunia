@@ -72,6 +72,8 @@ export const getOne = (model) => async (req, res) => {
       res.status(400).end();
     }
   };
+
+ 
   
   export const crudControllers = (model) => ({
     removeOne: removeOne(model),

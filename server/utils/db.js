@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import options from "../config/config.json";
 
-export const connect = (url = options.production.dbUrl, opts = {}) => {
+export const connect = (url = options.development.dbUrl, opts = {}) => {
   console.log("DB Connection Established");
 
   try {
