@@ -17,7 +17,7 @@ export const authService = {
 
 function login(email, password) {
   return axios
-    .post("http://localhost:4000/signin", { email, password })
+    .post("https://cdfreg.herokuapp.com/signin", { email, password })
     .then(handleResponse)
     .then(user => {
       localStorage.setItem("user", JSON.stringify(user));

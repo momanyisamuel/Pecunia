@@ -39,8 +39,8 @@ function DashBoard() {
                 <tbody className="text-gray-800">
                   {data?.map((item, value) => (
                     <>
-                      <tr className="border-b">
-                        <td className="pl-4 py-4">{item.fullNames}</td>
+                      <tr className="border-b" key={item._id}>
+                        <td className="pl-4 py-4"><a href={`/admin/applicant/${item._id}`}>{item.fullNames}</a></td>
                         <td className="py-4">{item.location}</td>
                         <td className="py-4">{item.institutionName}</td>
                         <td className="py-4"><span className="border p-1 border-red-400 text-red-400">{item.applicationStatus}</span></td>

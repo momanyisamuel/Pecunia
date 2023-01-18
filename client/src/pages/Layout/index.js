@@ -52,13 +52,7 @@ function Layout({ ...props }) {
               <div className="left w-1/2">
                 <ul className="w-full flex">
                   <li className="">
-                    <a href="/dashboard">Home</a>
-                  </li>
-                  <li className="ml-4">
-                    <a href="/registration">Registration</a>
-                  </li>
-                  <li className="ml-4">
-                    <a href="/dashboard">Applicants</a>
+                    <a href="/dashboard">Dashboard</a>
                   </li>
                 </ul>
               </div>

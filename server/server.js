@@ -4,6 +4,8 @@ import { connect } from "./utils/db";
 import userRouter from "./resources/user/user.router";
 import applicantRouter from "./resources/applicant/applicant.router";
 import { signin, signup, protect } from "./utils/auth";
+import { upload } from "./resources/applicant/applicant.controller";
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
