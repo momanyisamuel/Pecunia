@@ -50,7 +50,7 @@ function App() {
             }
           />
           <Route
-            path="/admin/applicant/:id"
+            path="/admin/applicant/:applicantId"
             element={
               <ProtectedRoute>
                 <Applicant />

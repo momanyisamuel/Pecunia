@@ -7,7 +7,10 @@ const userSchema = new mongoose.Schema(
     password: String,
     firstName: String,
     lastName: String,
-    role: String,
+    role: {
+      type:String,
+      default:"user"
+    },
     idNumber: String,
     contactNumber: String,
     workNumber: String,

@@ -3,8 +3,9 @@ import logo from "./cropped-cdf-official-logo.png";
 import { authService } from "../../helpers/auth";
 
 function Layout({ ...props }) {
-  const currentUser = authService.currentUserValue;
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
+  console.log(currentUser);
   const logout = () => {
     authService.logout();
     window.location.replace("/");
@@ -51,9 +52,22 @@ function Layout({ ...props }) {
             <div className="flex w-full justify-between">
               <div className="left w-1/2">
                 <ul className="w-full flex">
-                  <li className="">
-                    <a href="/dashboard">Dashboard</a>
-                  </li>
+                  {currentUser?.user && currentUser.user.role === "admin" ? (
+                    <>
+                      <li className="">
+                        <a href="/dashboard">Dashboard</a>
+                      </li>
+                      <li className="ml-4">
+                        <a href="/admin">Applicants</a>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      { currentUser ? (<li className="">
+                        <a href="/dashboard">Dashboard</a>
+                      </li>) : ""}
+                    </>
+                  )}
                 </ul>
               </div>
               <div className="right w-1/2 flex">
@@ -65,7 +79,7 @@ function Layout({ ...props }) {
                   ) : (
                     <>
                       <li className="">
-                        <a href="/signin">Sign In</a>
+                        <a href="/">Sign In</a>
                       </li>
                       <li className="pl-4">
                         <a href="/signup">Sign Up</a>
