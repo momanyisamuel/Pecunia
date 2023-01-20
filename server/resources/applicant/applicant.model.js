@@ -34,6 +34,7 @@ const applicantSchema = new mongoose.Schema(
     feeStatementUrl: String,
     totalFees: String,
     institutionHead: String,
+    userId:String,
     applicationStatus: 
       {
         type : String,

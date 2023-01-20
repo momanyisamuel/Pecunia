@@ -4,6 +4,20 @@ import multer from "multer";
 const fs = require('fs');
 const maxSize = 2 * 1024 * 1024;
 
+export const getUserApplications = async (req, res) => {
+  console.log(req.params);
+  try {
+    const doc = await Applicant.findOne({ userId: req.params.userId }).lean().exec();
+    if (!doc) {
+      return res.status(400).end();
+    }
+    res.status(200).json({ data: doc });
+  } catch (e) {
+    console.log(e);
+    res.status(400).end();
+  }
+};
+
 export const upload = async (req, res, next) => {
   try {
     await uploadFile(req, res, next);

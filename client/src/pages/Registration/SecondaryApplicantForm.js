@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Layout";
 import applicant from "../../api/applicant";
 
@@ -6,6 +6,14 @@ function SecondaryApplicantForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [fileUrl, setFileUrl] = useState();
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  
+  useEffect(()=>{
+    setFormData({
+      ...formData,
+      "userId" : currentUser.user._id
+    })
+  },[])
 
   const handleChange = (event) => {
     setFormData({

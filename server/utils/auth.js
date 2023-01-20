@@ -39,7 +39,7 @@ export const signin = async (req, res) => {
 
   try {
     const user = await User.findOne({ email: req.body.email })
-      .select("email password")
+      .select("email password role")
       .exec();
 
     if (!user) {

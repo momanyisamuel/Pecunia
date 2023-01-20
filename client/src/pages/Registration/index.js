@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import applicant from "../../api/applicant";
 import Layout from "../Layout";
 
 function Registration() {
- 
+  const [data, setData] = useState();
+  const fetchApplications = async () => {
+    const currentUser = JSON.parse(localStorage.getItem("user"))
+    const userId = currentUser.user._id 
+    try {
+      const res = await applicant.get(`api/applicant/applications/${userId}`)
+      console.log(res.data.data)
+      setData(res.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+      fetchApplications()
+  },[])
   return (
     <div>
       <Layout>
@@ -49,7 +64,7 @@ function Registration() {
                 </div>
                 <div className="applications mt-8">
                   <h3 className="font-light text-xl text-gray-700 mb-4">
-                    Your Applications (1)
+                    Your Applications
                   </h3>
                   <div>
                     <table className="w-full border rounded">
@@ -61,11 +76,11 @@ function Registration() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-b">
-                          <td className="pl-4">Samel</td>
-                          <td><span className="border p-1 border-red-400 text-red-400">pending</span></td>
-                          <td>KES 300,000</td>
-                        </tr>
+                          { data ? (<tr className="border-b">
+                            <td className="pl-4">{data?.fullNames}</td>
+                            <td><span className="border p-1 border-red-400 text-red-400">{data?.applicationStatus}</span></td>
+                            <td>0</td>
+                          </tr>) : (<><tr><td colSpan={3} className="pl-4">No Applications</td></tr></>)}
                       </tbody>
                     </table>
                   </div>
