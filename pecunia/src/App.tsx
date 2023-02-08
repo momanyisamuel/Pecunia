@@ -7,6 +7,7 @@ import Registration from './pages/Registration';
 import SecondaryApplicantForm from "./pages/Registration/SecondaryApplicantForm";
 import TertiaryApplicantForm from "./pages/Registration/TertiaryApplicantForm";
 import SignUp from "./pages/SignUp";
+import Applications from './pages/Applications';
 
 function App() {
   return (
@@ -40,15 +41,15 @@ function App() {
             }
           />
           <Route
-            path="/admin/"
+            path="/applications"
             element={
               <ProtectedRoute>
-                <DashBoard />
+                <Applications />
               </ProtectedRoute>
             }
           />
           <Route
-            path="/admin/applicant/:applicantId"
+            path="/applications/applicant/:applicantId"
             element={
               <ProtectedRoute>
                 <Applicant />
