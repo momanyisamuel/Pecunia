@@ -8,6 +8,7 @@ import SecondaryApplicantForm from "./pages/Registration/SecondaryApplicantForm"
 import TertiaryApplicantForm from "./pages/Registration/TertiaryApplicantForm";
 import SignUp from "./pages/SignUp";
 import Applications from './pages/Applications';
+import Programmes from './pages/Programmes';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Registration />
+                <DashBoard />
               </ProtectedRoute>
             }
           />
@@ -53,6 +54,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Applicant />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/programmes"
+            element={
+              <ProtectedRoute>
+                <Programmes />
               </ProtectedRoute>
             }
           />

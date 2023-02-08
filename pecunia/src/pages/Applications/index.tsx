@@ -138,7 +138,15 @@ export default function Applications() {
                 </p>
               </div>
             </div>
-            <Records data={currentRecords} />
+            {loading ? (
+              <tr>
+                <td colSpan={5} className="p-5">
+                  Loading...
+                </td>
+              </tr>
+            ) : (
+              <Records data={currentRecords} />
+            )}
             <div className="mt-4">
               <Pagination
                 nPages={nPages}

@@ -40,6 +40,10 @@ const applicantSchema = new mongoose.Schema(
         type : String,
         default : 'pending'
     },
+    programme: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Programme"
+    }
   },
   { timestamps: true }
 );

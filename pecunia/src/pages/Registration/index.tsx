@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import applicant from "../../api/applicant";
-import CountSvg from "../../components/Count";
 import Layout from "../Layout";
 
 function Registration() {
@@ -23,7 +22,6 @@ function Registration() {
     <div>
       <Layout>
         <div className="body">
-          <CountSvg />
           <div className="title py-6 text-gray-700">
             <div className="contain m-0 mx-auto w-10/12">
               <h1 className="font-bold text-4xl">
