@@ -5,7 +5,7 @@ function Review() {
   const [value, setValue] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log(value, selectedOption);
   };

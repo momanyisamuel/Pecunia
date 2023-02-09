@@ -34,7 +34,10 @@ const applicantSchema = new mongoose.Schema(
     feeStatementUrl: String,
     totalFees: String,
     institutionHead: String,
-    userId:String,
+    userId:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
     applicationStatus: 
       {
         type : String,

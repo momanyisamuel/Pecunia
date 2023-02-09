@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import applicant from "../../api/applicant";
 import Layout from "../Layout";
+import Documents from "./Documents";
 
 function Registration() {
   const [data, setData] = useState();
+
   const fetchApplications = async () => {
     const currentUser = JSON.parse(localStorage.getItem("user"))
     const userId = currentUser.user._id 
@@ -62,10 +64,15 @@ function Registration() {
                     </p>
                   </ul>
                 </div>
+                <div className="a">
+                  <h3 className="font-light text-xl text-gray-700 mb-4">Your Documents</h3>
+                  <Documents/>
+                </div>
                 <div className="applications mt-8">
                   <h3 className="font-light text-xl text-gray-700 mb-4">
                     Your Applications
                   </h3>
+                  
                   <div>
                     <table className="w-full border rounded">
                       <thead className="text-left text-gray-900 text-base">

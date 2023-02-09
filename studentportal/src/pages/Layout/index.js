@@ -1,12 +1,9 @@
 import React from 'react'
 import logo from "./cropped-cdf-official-logo.png";
 import { authService } from "../../helpers/auth";
-import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
 
 function Layout({ ...props }) {
   const currentUser = JSON.parse(localStorage.getItem("user"));
-
-  console.log(currentUser);
   const logout = () => {
     authService.logout();
     window.location.replace("/");
@@ -18,18 +15,32 @@ function Layout({ ...props }) {
           <div className="flex justify-between">
             <div className="name">
               <p className="text-left">
-                <span className="block font-bold">PECUNIA</span>
+                <span className="block font-bold">NG-CDF</span>
+                <span className="block font-bold">IJARA</span>
               </p>
             </div>
             <div className="logo">
-              <div className="m-auto w-10"></div>
+              <div className="m-auto w-10">
+                <a href="#">
+                  <img className="w-10 h-10" src={logo} alt="" />
+                </a>
+              </div>
             </div>
             <div className="social">
               <a href="#">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
+                  />
+                </svg>
               </a>
             </div>
           </div>
@@ -44,19 +55,12 @@ function Layout({ ...props }) {
                       <li className="">
                         <a href="/dashboard">Dashboard</a>
                       </li>
-                      <li className="ml-4">
-                        <a href="/admin">Applicants</a>
-                      </li>
                     </>
                   ) : (
                     <>
-                      {currentUser ? (
-                        <li className="">
-                          <a href="/dashboard">Dashboard</a>
-                        </li>
-                      ) : (
-                        ""
-                      )}
+                      {currentUser ? (<li className="">
+                        <a href="/dashboard">Dashboard</a>
+                      </li>) : ""}
                     </>
                   )}
                 </ul>
@@ -65,6 +69,7 @@ function Layout({ ...props }) {
                 <ul className="w-full flex justify-end">
                   {currentUser ? (
                     <li className="">
+                      <p>{currentUser.user.email}</p>
                       <button onClick={() => logout()}>Logout</button>
                     </li>
                   ) : (

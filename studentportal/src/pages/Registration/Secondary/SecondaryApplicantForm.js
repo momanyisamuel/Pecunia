@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../Layout";
-import applicant from "../../api/applicant";
+import Layout from "../../Layout";
+import applicant from "../../../api/applicant";
 
 function SecondaryApplicantForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [fileUrl, setFileUrl] = useState();
   const currentUser = JSON.parse(localStorage.getItem("user"));
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     setFormData({
       ...formData,
-      "userId" : currentUser.user._id
-    })
-  },[])
+      userId: currentUser.user._id,
+    });
+  }, []);
 
   const handleChange = (event) => {
     setFormData({
@@ -41,28 +41,25 @@ function SecondaryApplicantForm() {
     event.preventDefault();
     const form = new FormData();
     form.append("fileUrl", formData);
-    console.log(form)
+    console.log(form);
     try {
       await applicant.post("api/applicant/upload", form, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
-      })
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData)
-    applicant
-      .post("api/applicant/", formData)
-      .then((result) => {
-        console.log(result);
-        window.location.replace("/dashboard");
-      });
+    console.log(formData);
+    applicant.post("api/applicant/", formData).then((result) => {
+      console.log(result);
+      window.location.replace("/dashboard");
+    });
   };
 
   const nextStep = () => {
@@ -189,7 +186,10 @@ function Step1(props) {
       <div className="mb-12 flex">
         <div className="side w-1/2">
           <div className="names mb-2">
-            <label htmlFor="fullNames" className="block text-base font-bold mb-2">
+            <label
+              htmlFor="fullNames"
+              className="block text-base font-bold mb-2"
+            >
               Name Of Applicant
             </label>
             <input
@@ -308,15 +308,6 @@ function Step1(props) {
               id=""
             />
           </div>
-          <div class="mb-2">
-            <label>Upload Copy of Kcpe result for form 1:</label>
-            <input
-              type="file"
-              name="KCPEResusltUrl"
-              onChange={props.handleFileChange}
-            />
-            <button onClick={props.handleUploadClick}>Upload</button>
-          </div>
         </div>
       </div>
       <button
@@ -381,36 +372,6 @@ function Step2(props) {
               id=""
             />
           </div>
-          <div class="mb-2">
-            <label class="block text-base font-bold mb-2">
-              Upload Reference Letter
-            </label>
-            <div class="mb-8">
-              <input
-                type="file"
-                name="institutionReferenceUrl"
-                id="institutionReferenceUrl"
-                className="sr-only"
-                onChange={props.handleFileChange}
-              />
-              <label
-                for="institutionReferenceUrl"
-                class="relative flex w-3/4 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-6 text-center"
-              >
-                <div>
-                  <span class="mb-2 text-base font-semibold text-[#07074D] cursor-pointer">
-                    Drop files here
-                  </span>
-                  <span class="mb-2 ml-4 text-sm font-medium text-[#6B7280]">
-                    or
-                  </span>
-                  <span class="ml-4 inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer">
-                    Browse
-                  </span>
-                </div>
-              </label>
-            </div>
-          </div>
         </div>
         <div className="side w-1/2">
           <div className="mb-2">
@@ -460,36 +421,6 @@ function Step2(props) {
               placeholder="Amount of fees per year"
               id=""
             />
-          </div>
-          <div class="mb-2">
-            <label class="block text-base font-bold mb-2">
-              Upload Fees Statement
-            </label>
-            <div class="mb-8">
-              <input
-                type="file"
-                name="feeStatementUrl"
-                id="feeStatementUrl"
-                className="sr-only"
-                onChange={props.handleFileChange}
-              />
-              <label
-                for="feeStatementUrl"
-                class="relative flex w-3/4 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-6 text-center"
-              >
-                <div>
-                  <span class="mb-2 text-base font-semibold text-[#07074D] cursor-pointer">
-                    Drop files here
-                  </span>
-                  <span class="mb-2 ml-4 text-sm font-medium text-[#6B7280]">
-                    or
-                  </span>
-                  <span class="ml-4 inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer">
-                    Browse
-                  </span>
-                </div>
-              </label>
-            </div>
           </div>
         </div>
       </div>
@@ -587,129 +518,8 @@ function Step3(props) {
               id=""
             />
           </div>
-          <div class="mb-2">
-            <label class="block text-base font-bold mb-2">
-              Chief's/Ass. Chief's Certification.
-            </label>
-            <div class="mb-8">
-              <input
-                type="file"
-                name="chiefReferenceUrl"
-                id="chiefReferenceUrl"
-                className="sr-only"
-                onChange={props.handleFileChange}
-              />
-              <label
-                for="chiefReferenceUrl"
-                class="relative flex w-3/4 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-6 text-center"
-              >
-                <div>
-                  <span class="mb-2 text-base font-semibold text-[#07074D] cursor-pointer">
-                    Drop files here
-                  </span>
-                  <span class="mb-2 ml-4 text-sm font-medium text-[#6B7280]">
-                    or
-                  </span>
-                  <span class="ml-4 inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer">
-                    Browse
-                  </span>
-                </div>
-              </label>
-            </div>
-          </div>
         </div>
-        <div className="w-1/2">
-          <div class="mb-2">
-            <label class="block text-base font-bold mb-2">
-              Copy of parent I.D.
-            </label>
-            <div class="mb-8">
-              <input
-                type="file"
-                name="parentIdCardUrl"
-                id="parentIdCardUrl"
-                className="sr-only"
-                onChange={props.handleFileChange}
-              />
-              <label
-                for="parentIdCardUrl"
-                class="relative flex w-3/4 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-6 text-center"
-              >
-                <div>
-                  <span class="mb-2 text-base font-semibold text-[#07074D] cursor-pointer">
-                    Drop files here
-                  </span>
-                  <span class="mb-2 ml-4 text-sm font-medium text-[#6B7280]">
-                    or
-                  </span>
-                  <span class="ml-4 inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer">
-                    Browse
-                  </span>
-                </div>
-              </label>
-            </div>
-          </div>
-          <div class="mb-2">
-            <label class="block text-base font-bold mb-2">
-              Copy of parent vote card.
-            </label>
-            <div class="mb-8">
-              <input
-                type="file"
-                name="parentVoteCardUrl"
-                id="parentVoteCardUrl"
-                className="sr-only"
-                onChange={props.handleFileChange}
-              />
-              <label
-                for="parentVoteCardUrl"
-                class="relative flex w-3/4 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-6 text-center"
-              >
-                <div>
-                  <span class="mb-2 text-base font-semibold text-[#07074D] cursor-pointer">
-                    Drop files here
-                  </span>
-                  <span class="mb-2 ml-4 text-sm font-medium text-[#6B7280]">
-                    or
-                  </span>
-                  <span class="ml-4 inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer">
-                    Browse
-                  </span>
-                </div>
-              </label>
-            </div>
-          </div>
-          <div class="mb-2">
-            <label class="block text-base font-bold mb-2">
-              Copy of last 2 report form for F2,F3 and F4.
-            </label>
-            <div class="mb-8">
-              <input
-                type="file"
-                name="institutionTranscriptUrl"
-                id="institutionTranscriptUrl"
-                className="sr-only"
-                onChange={props.handleFileChange}
-              />
-              <label
-                for="institutionTranscriptUrl"
-                class="relative flex w-3/4 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-6 text-center"
-              >
-                <div>
-                  <span class="mb-2 text-base font-semibold text-[#07074D] cursor-pointer">
-                    Drop files here
-                  </span>
-                  <span class="mb-2 ml-4 text-sm font-medium text-[#6B7280]">
-                    or
-                  </span>
-                  <span class="ml-4 inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer">
-                    Browse
-                  </span>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
+        <div className="w-1/2"></div>
       </div>
       <button
         className="inline-flex flex-row justify-center align-middle bg-gray-900 text-left text-gray-300 shadow-sm rounded-sm py-1.5 px-3 min-w-[30px] min-h-[30px]"
