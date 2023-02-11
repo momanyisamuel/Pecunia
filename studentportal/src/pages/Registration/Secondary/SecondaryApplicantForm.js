@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Layout";
 import applicant from "../../../api/applicant";
+import StepThree from "../Tertiary/stepthree";
 
 function SecondaryApplicantForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [fileUrl, setFileUrl] = useState();
   const currentUser = JSON.parse(localStorage.getItem("user"));
+  const [programmes, setProgrammes] = useState();
 
   useEffect(() => {
+    const getProgrammes = async () => {
+      try {
+        const res = await applicant.get("/api/programme");
+        setProgrammes(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProgrammes();
     setFormData({
       ...formData,
       userId: currentUser.user._id,
@@ -51,6 +62,12 @@ function SecondaryApplicantForm() {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handleFileData = (files) => {
+    setFormData({
+      ...formData,
+      files: files,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -165,12 +182,14 @@ function SecondaryApplicantForm() {
               />
             )}
             {currentStep === 3 && (
-              <Step3
+              <StepThree
                 formData={formData}
                 handleChange={handleChange}
                 handleCheckboxChange={handleCheckboxChange}
                 prevStep={prevStep}
                 submit={handleSubmit}
+                programmes={programmes}
+                handleFileData={handleFileData}
               />
             )}
           </div>
